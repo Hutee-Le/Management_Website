@@ -1,9 +1,9 @@
+import Header from './components/header/Header';
+
 function App() {
   return (
     <div className="App">
-      <div className='Header'>
-        Header Content
-      </div>
+      <Header />
 
       <div className="Layout">
         <div className="Layout_Sidebar">

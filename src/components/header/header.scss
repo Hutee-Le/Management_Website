@@ -1,0 +1,139 @@
+.Header {
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  width: 100%;
+  height: 3.625rem;
+  background-color: rgb(255, 255, 255);
+  display: flex;
+  z-index: 2;
+  box-shadow: 0 0.15rem 1.75rem 0 rgba(33, 40, 50, 0.15);
+
+  &_Left {
+    display: flex;
+    align-items: center;
+    background-color: rgb(255, 255, 255);
+    margin-right: auto;
+
+    &_Button {
+      width: 44px;
+      height: 44px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border: none;
+      border-radius: 50%;
+      background-color: rgb(255, 255, 255);
+      cursor: pointer;
+      margin-left: 8px;
+
+      &:hover {
+        background-color: #E8E9EA;
+      }
+    }
+
+    &_Logo {
+      width: 12rem;
+      font-size: 1rem;
+      font-weight: bold;
+      text-decoration: none;
+      padding: 5px 16px 5px 8px;
+    }
+
+    &_Search {
+
+      &_Group {
+        display: flex;
+        border-radius: 0.4375rem;
+        overflow: hidden;
+
+        &:focus-within {
+          outline: 4px solid rgb(142, 208, 250);
+        }
+
+        & input {
+          width: 188px;
+          border: 0;
+          background-color: #eef2f8;
+          font-size: 0.9rem;
+          padding: 14px 0 14px 18px;
+
+          &:focus {
+            outline: none;
+          }
+
+          &::placeholder {
+            color: rgba(125, 125, 125, 0.5);
+            font-weight: 600;
+          }
+        }
+
+        &_Icon {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          padding: 14px 18px;
+          border: 0;
+          background-color: #eef2f8;
+          color: gray;
+        }
+      }
+    }
+  }
+
+  &_Right {
+    display: flex;
+    align-items: center;
+    height: 3.625rem;
+    margin-left: auto;
+
+    &_Nav {
+      display: flex;
+      align-items: center;
+      list-style: none;
+
+      &_Item {
+        margin-right: 1rem;
+
+        &_Href {
+          text-decoration: none;
+          color: rgb(1, 1, 1, 0.4);
+
+          &:hover {
+            color: rgb(1, 1, 1, 0.7);
+          }
+
+          &_Text {
+            display: inline-flex;
+            align-items: center;
+            font-weight: 500;
+            font-size: 1rem;
+          }
+        }
+
+        & button {
+          width: 44px;
+          height: 44px;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          border: none;
+          border-radius: 50%;
+          background-color: rgb(255, 255, 255);
+          cursor: pointer;
+
+          &:hover {
+            background-color: #E8E9EA;
+          }
+        }
+
+        & img {
+          width: 44px;
+          height: 44px;
+          border-radius: 50%;
+        }
+      }
+    }
+  }
+}
