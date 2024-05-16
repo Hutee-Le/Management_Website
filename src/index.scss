@@ -1,8 +1,11 @@
+$--bs-warning-rgb: rgba(244, 161, 0);
+$--bs-info-rgb: rgba(0, 207, 213);
+$--bs-danger-rgb: rgba(232, 21, 0);
+$--bs-success-rgb: rgba(0, 172, 105);
+$--bs-dropdown-link-hover-bg: #e0e5ec;
+
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -16,11 +19,13 @@ code {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
+  font-family: 'Metropolis', sans-serif;
 }
 
 html,
 body {
   height: 100%;
+  line-height: 1.5;
 }
 
 .App {
