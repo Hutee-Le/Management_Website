@@ -1,5 +1,5 @@
 .Sidebar {
-    width: 15.32rem;
+    width: 15rem;
     height: 100vh;
     padding-top: 3.625rem;
     background-color: #fff;
@@ -9,6 +9,7 @@
     box-shadow: 0.15rem 0 1.75rem 0 rgba(33, 40, 50, 0.15);
 
     &_Hidden {
+        transform: translateX(-15rem);    
         padding-top: 3.625rem;
         width: 0;
         overflow: hidden;
@@ -23,6 +24,13 @@
         font-size: 0.9rem;
 
         &_Menu {
+            flex-grow: 1;
+            overflow: hidden;
+            
+            &:hover{
+                overflow-y: scroll;
+            }
+
             &_Heading {
                 padding: 1.75rem 1rem 0.75rem;
                 font-size: 0.7rem;
@@ -70,6 +78,21 @@
             padding-left: 0.75rem;
             padding-right: 0.75rem;
             height: 5rem;
+            color: #212832;
+            background-color: rgba(33, 40, 50, 0.05);
+        
+            &_Content{
+                font-size: 0.95rem;
+
+                &_Subtitle{
+                    font-size: 0.75rem;
+                    color: #69707a;
+                }
+
+                &_Title{
+                    font-weight: 500;
+                }
+            }
         }
     }
 }
