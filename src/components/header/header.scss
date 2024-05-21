@@ -1,5 +1,18 @@
 @import "../../index.scss";
 
+@keyframes fadeInUp {
+  0% {
+    opacity: 0;
+    margin-top: 0.75rem;
+  }
+
+  100% {
+    opacity: 1;
+    margin-top: 0;
+  }
+}
+
+
 .Header {
   position: fixed;
   top: 0;
@@ -108,8 +121,13 @@
           color: rgb(1, 1, 1, 0.4);
 
           &_DocumentDrop {
+            display: inline-flex;
+            align-items: center;
+            text-decoration: none;
+            color: rgba(0, 0, 0, 0.55);
+            padding: 0.5rem;
+
             &_Menu {
-              display: none;
               position: absolute;
               top: calc(100% + 0.7rem + 0.7rem);
               right: 0;
@@ -119,7 +137,9 @@
               border-radius: 0.35rem;
               font-weight: 400;
               overflow: hidden;
-
+              box-shadow: 0 0.15rem 1.75rem 0 rgba(33, 40, 50, 0.15);
+              animation-name: fadeInUp;
+              animation-duration: 300ms;
 
               &_Item {
                 display: flex;
@@ -156,6 +176,8 @@
                 }
               }
             }
+
+
           }
 
           &:hover {
@@ -163,15 +185,20 @@
           }
 
           &_Text {
-            display: inline-flex;
-            align-items: center;
-            font-weight: 500;
-            font-size: 1rem;
+            font-weight: 500 !important;
+          }
+
+          &_Icon {
+            transition: .3s;
+
+            &_Show {
+              transform: rotate(90deg);
+              transition: .3s;
+            }
           }
         }
 
         &_BellMenu {
-          display: none;
           position: absolute;
           top: calc(100% + 0.7rem + 0.7rem);
           right: 0;
@@ -181,6 +208,9 @@
           overflow: hidden;
           min-width: 18.75rem;
           max-height: calc(21rem - 1px);
+          box-shadow: 0 0.15rem 1.75rem 0 rgba(33, 40, 50, 0.15);
+          animation-name: fadeInUp;
+          animation-duration: 300ms;
 
           &::-webkit-scrollbar {
             max-width: 0.75rem;
@@ -321,7 +351,6 @@
         }
 
         &_MailMenu {
-          display: none;
           position: absolute;
           top: calc(100% + 0.7rem + 0.7rem);
           right: 0;
@@ -331,6 +360,9 @@
           overflow: hidden;
           min-width: 18.75rem;
           max-height: calc(21rem - 1px);
+          animation-name: fadeInUp;
+          animation-duration: 300ms;
+          box-shadow: 0 0.15rem 1.75rem 0 rgba(33, 40, 50, 0.15);
 
           &::-webkit-scrollbar {
             max-width: 0.75rem;
@@ -500,7 +532,6 @@
         }
 
         &_UserImageDrop {
-          display: none;
           position: absolute;
           top: calc(100% + 0.7rem + 0.7rem);
           right: 0;
@@ -510,6 +541,9 @@
           overflow: hidden;
           min-width: 15rem;
           padding: 0.5rem 0;
+          box-shadow: 0 0.15rem 1.75rem 0 rgba(33, 40, 50, 0.15);
+          animation-name: fadeInUp;
+          animation-duration: 300ms;
 
           &_Header {
             display: flex;
@@ -555,7 +589,7 @@
             padding: 0.25rem 1rem;
             color: #212832;
 
-            &:hover{
+            &:hover {
               background-color: $--bs-dropdown-link-hover-bg;
             }
           }

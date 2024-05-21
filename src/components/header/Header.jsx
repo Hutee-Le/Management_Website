@@ -1,13 +1,55 @@
-import React from 'react'
+import React, { useState } from 'react'
 import './header.scss'
 import { FiMenu, FiSearch, FiBell, FiMail, FiChevronRight, FiBook, FiCode, FiFileText, FiActivity, FiBarChart, FiAlertTriangle, FiUserPlus, FiSettings, FiLogOut } from "react-icons/fi";
+import { signal } from '@preact/signals';
 
+export const openMenuSignal = signal(true);
 
 const Header = () => {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [documentOpen, setDocumentOpen] = useState(false);
+  const [emailMenuOpen, setEmailMenuOpen] = useState(false);
+  const [bellMenuOpen, setBellMenuOpen] = useState(false);
+  const [userProfileOpen, setUserProfileOpen] = useState(false);
+
+  const toggleSidebar = () => {
+    setIsMenuOpen(!isMenuOpen);
+    openMenuSignal.value = isMenuOpen
+  };
+
+  const toggleDocumentMenu = (e) => {
+    e.preventDefault()
+    setDocumentOpen(!documentOpen)
+    setEmailMenuOpen(false);
+    setBellMenuOpen(false);
+    setUserProfileOpen(false);
+  };
+
+  const toggleEmailMenu = () => {
+    setEmailMenuOpen(!emailMenuOpen);
+    setDocumentOpen(false)
+    setBellMenuOpen(false)
+    setUserProfileOpen(false)
+  }
+
+  const toggleBellMenu = () => {
+    setBellMenuOpen(!bellMenuOpen);
+    setDocumentOpen(false)
+    setEmailMenuOpen(false)
+    setUserProfileOpen(false)
+  }
+
+  const toggleUserProfile = (e) => {
+    e.preventDefault()
+    setUserProfileOpen(!userProfileOpen);
+    setDocumentOpen(false);
+    setBellMenuOpen(false);
+    setEmailMenuOpen(false);
+  }
   return (
     <div className='Header'>
       <div className='Header_Left'>
-        <button type='button' className='Header_Left_Button'><FiMenu /></button>
+        <button type='button' className='Header_Left_Button' onClick={toggleSidebar}><FiMenu /></button>
         <a href="/" className='Header_Left_Logo'>SB Admin Pro</a>
         <form action="" className='Header_Left_Search'>
           <div className='Header_Left_Search_Group'>
@@ -17,21 +59,22 @@ const Header = () => {
         </form>
       </div>
       <div className='Header_Right'>
-        <ul class="Header_Right_Nav">
-          <li class="Header_Right_Nav_Item">
-            <a className="Header_Right_Nav_Item_Href_DocumentDrop" href='/#'>
+        <ul className="Header_Right_Nav">
+          <li className="Header_Right_Nav_Item">
+            <a href='/' className="Header_Right_Nav_Item_Href_DocumentDrop" onClick={toggleDocumentMenu}>
               <div className='Header_Right_Nav_Item_Href_Text'>
                 Documentation
-                <FiChevronRight />
               </div>
+              <FiChevronRight className={`Header_Right_Nav_Item_Href_Icon${documentOpen ? '_Show' : ''}`}/>
+
             </a>
-            <div className='Header_Right_Nav_Item_Href_DocumentDrop_Menu'>
+            {documentOpen && (<div className='Header_Right_Nav_Item_Href_DocumentDrop_Menu'>
               <a href="/" className='Header_Right_Nav_Item_Href_DocumentDrop_Menu_Item'>
                 <div className='Header_Right_Nav_Item_Href_DocumentDrop_Menu_Item_Icon'>
                   <FiBook />
                 </div>
                 <div>
-                  <div class="Header_Right_Nav_Item_Href_DocumentDrop_Menu_Item_Title">Documentation</div>
+                  <div className="Header_Right_Nav_Item_Href_DocumentDrop_Menu_Item_Title">Documentation</div>
                   Usage instructions and reference
                 </div>
               </a>
@@ -41,7 +84,7 @@ const Header = () => {
                   <FiCode />
                 </div>
                 <div>
-                  <div class="Header_Right_Nav_Item_Href_DocumentDrop_Menu_Item_Title">Components</div>
+                  <div className="Header_Right_Nav_Item_Href_DocumentDrop_Menu_Item_Title">Components</div>
                   Code snippets and reference
                 </div>
               </a>
@@ -51,16 +94,16 @@ const Header = () => {
                   <FiFileText />
                 </div>
                 <div>
-                  <div class="Header_Right_Nav_Item_Href_DocumentDrop_Menu_Item_Title">Changelog</div>
+                  <div className="Header_Right_Nav_Item_Href_DocumentDrop_Menu_Item_Title">Changelog</div>
                   Updates and changes
                 </div>
               </a>
-            </div>
+            </div>)}
           </li>
-          <li class="Header_Right_Nav_Item">
-            <button type='button' className='Header_Right_Nav_Item_Button'><FiBell color='gray' /></button>
-            <div className='Header_Right_Nav_Item_BellMenu'>
-              <h6 class="Header_Right_Nav_Item_BellMenu_Header">
+          <li className="Header_Right_Nav_Item">
+            <button type='button' className='Header_Right_Nav_Item_Button' onClick={toggleBellMenu}><FiBell color='gray' /></button>
+            {bellMenuOpen && (<div className='Header_Right_Nav_Item_BellMenu'>
+              <h6 className="Header_Right_Nav_Item_BellMenu_Header">
                 <FiBell className='Header_Right_Nav_Item_BellMenu_Header_Icon' />
                 Alerts Center
               </h6>
@@ -101,12 +144,12 @@ const Header = () => {
                 </div>
               </a>
               <a href="/" className='Header_Right_Nav_Item_BellMenu_Footer'>View All Alerts</a>
-            </div>
+            </div>)}
           </li>
-          <li class="Header_Right_Nav_Item">
-            <button type='button' className='Header_Right_Nav_Item_Button'><FiMail color='gray' /></button>
-            <div className='Header_Right_Nav_Item_MailMenu'>
-              <h6 class="Header_Right_Nav_Item_MailMenu_Header">
+          <li className="Header_Right_Nav_Item">
+            <button type='button' className='Header_Right_Nav_Item_Button' onClick={toggleEmailMenu}><FiMail color='gray' /></button>
+            {emailMenuOpen && (<div className='Header_Right_Nav_Item_MailMenu'>
+              <h6 className="Header_Right_Nav_Item_MailMenu_Header">
                 <FiMail className='Header_Right_Nav_Item_MailMenu_Header_Icon' />
                 Message Center
               </h6>
@@ -147,13 +190,13 @@ const Header = () => {
                 </div>
               </a>
               <a href="/" className='Header_Right_Nav_Item_MailMenu_Footer'>View All Alerts</a>
-            </div>
+            </div>)}
           </li>
-          <li class="Header_Right_Nav_Item">
-            <a href='/'>
+          <li className="Header_Right_Nav_Item">
+            <a href='/' onClick={toggleUserProfile}>
               <img src="images/profile.png" alt="" className='Header_Right_Nav_Item_Profile' />
             </a>
-            <div className='Header_Right_Nav_Item_UserImageDrop'>
+            {userProfileOpen && (<div className='Header_Right_Nav_Item_UserImageDrop'>
               <h6 className='Header_Right_Nav_Item_UserImageDrop_Header'>
                 <img src="images/profile.png" alt="" />
                 <div className='Header_Right_Nav_Item_UserImageDrop_Header_Detail'>
@@ -163,14 +206,14 @@ const Header = () => {
               </h6>
               <div className='Header_Right_Nav_Item_UserImageDrop_Divider'></div>
               <a href="/">
-                <div className='Header_Right_Nav_Item_UserImageDrop_Img'><FiSettings size={12}/></div>
+                <div className='Header_Right_Nav_Item_UserImageDrop_Img'><FiSettings size={12} /></div>
                 Account
               </a>
               <a href="/">
-                <div className='Header_Right_Nav_Item_UserImageDrop_Img'><FiLogOut size={12}/></div>
+                <div className='Header_Right_Nav_Item_UserImageDrop_Img'><FiLogOut size={12} /></div>
                 Account
               </a>
-            </div>
+            </div>)}
           </li>
         </ul>
       </div>
