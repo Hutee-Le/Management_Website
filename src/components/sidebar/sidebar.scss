@@ -9,7 +9,7 @@
     box-shadow: 0.15rem 0 1.75rem 0 rgba(33, 40, 50, 0.15);
 
     &_Hidden {
-        transform: translateX(-15rem);    
+        transform: translateX(-15rem);
         padding-top: 3.625rem;
         width: 0;
         overflow: hidden;
@@ -26,9 +26,37 @@
         &_Menu {
             flex-grow: 1;
             overflow: hidden;
-            
-            &:hover{
-                overflow-y: scroll;
+            max-width: 14.95rem;
+
+            &:hover {
+                overflow-y: overlay;
+            }
+
+            &::-webkit-scrollbar {
+                width: 0.75rem;
+            }
+
+            &::-webkit-scrollbar-thumb {
+                border-radius: 10rem;
+                border-width: 0.2rem;
+                border-style: solid;
+                background-clip: padding-box;
+                background-color: rgba(33, 40, 50, 0.2);
+                border-color: transparent;
+            }
+
+            &::-webkit-scrollbar-button {
+                width: 0;
+                height: 0;
+                display: none;
+            }
+
+            &::-webkit-scrollbar-corner {
+                background-color: transparent;
+            }
+
+            &::-webkit-scrollbar-track {
+                background: inherit;
             }
 
             &_Heading {
@@ -67,6 +95,52 @@
                     display: inline-flex;
                     align-items: center;
                     margin-left: auto;
+                    
+                    & svg{
+                        color: #a7aeb8;
+                    }
+                }
+            }
+
+            &_Dropdown {
+                display: flex;
+                flex-direction: column;
+                margin-left: 1.4375rem;
+                border-left-style: solid;
+                border-left-width: thin;
+                padding-left: 0.5625rem;
+                flex-wrap: nowrap;
+                border-left-color: #d4dae3;
+
+                &_Link {
+                    display: flex;
+                    align-items: center;
+                    padding: 0.75rem 1rem;
+                    line-height: normal;
+
+                    &_Active {
+                        display: flex;
+                        align-items: center;
+                        padding: 0.75rem 1rem;
+                        line-height: normal;
+                        font-weight: 600;
+                        color: #0061f2;
+                    }
+
+                    &_Badge {
+                        display: inline-block;
+                        margin-left: auto;
+                        line-height: 1;
+                        padding: 0.125rem 0.25rem;
+                        font-size: 0.75em;
+                        font-weight: 400;
+                        text-align: center;
+                        white-space: nowrap;
+                        vertical-align: baseline;
+                        background-color: rgba(218, 231, 251);
+                        color: rgba(0, 97, 242);
+                        border-radius: 0.35rem;
+                    }
                 }
             }
         }
@@ -80,16 +154,16 @@
             height: 5rem;
             color: #212832;
             background-color: rgba(33, 40, 50, 0.05);
-        
-            &_Content{
+
+            &_Content {
                 font-size: 0.95rem;
 
-                &_Subtitle{
+                &_Subtitle {
                     font-size: 0.75rem;
                     color: #69707a;
                 }
 
-                &_Title{
+                &_Title {
                     font-weight: 500;
                 }
             }
